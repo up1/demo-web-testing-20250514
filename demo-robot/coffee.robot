@@ -10,14 +10,24 @@ ${URL}    https://seleniumbase.io/coffee
     ทำการเลือก espresso จำนวน 2 แก้ว
     ใน cart จะต้องมี espresso จำนวน 2 แก้ว ราคา 20.00
     ทำการ checkout
-    แสดงผลการทำงาน Success
 
 *** Keywords ***
+ทำการ checkout
+    Click Element    xpath=//*[@id="app"]/div[2]/div/div[1]/button
+    Input Text    id=name   Somkiat
+    Input Text    id=email   somkiat@xxx.com
+    Click Element    id=submit-payment
+    Wait Until Page Contains    Thanks
+
+ใน cart จะต้องมี espresso จำนวน 2 แก้ว ราคา 20.00
+    Click Element    xpath=//*[@id="app"]/ul/li[2]/a
+    Wait Until Element Contains    xpath=//*[@id="app"]/div[2]/div/div[1]/button   
+    ...    Total: $20.00
+
 ทำการเลือก espresso จำนวน 2 แก้ว
     Click Element    xpath=//*[@data-test="Espresso"]
     Click Element    xpath=//*[@data-test="Espresso"]
 
-    Click Element    xpath=//*[@id="app"]/ul/li[2]/a
 
 เข้ามายังหน้า list ของกาแฟ
     Open Browser    ${URL}    chrome
